@@ -22,4 +22,4 @@ const longestSubarray = function (nums) {
   return max;
 };
 
-console.log(longestSubarray([1, 1, 1]));
+console.log(longestSubarray([1, 1, 0, 1]));
