@@ -9,13 +9,13 @@ const maxVowels = function (s, k) {
   let vowles = ['a', 'e', 'i', 'o', 'u'];
 
   for (let i = 0; i < s.length; i++) {
-      if (vowles.includes(s[i])) {
-          count++;
-      }
-      if (i >= k && vowles.includes(s[i - k])) {
-          count--;
-      }
-      max = Math.max(max, count);
+    if (vowles.includes(s[i])) {
+      count++;
+    }
+    if (i >= k && vowles.includes(s[i - k])) {
+      count--;
+    }
+    max = Math.max(max, count);
   }
   return max;
 };

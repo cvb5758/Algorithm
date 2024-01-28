@@ -5,7 +5,7 @@
  */
 const gcdOfStrings = function (str1, str2) {
   if (str1 + str2 !== str2 + str1) {
-      return '';
+    return '';
   }
 
   const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
@@ -16,7 +16,7 @@ const gcdOfStrings = function (str1, str2) {
 
 console.log(
   gcdOfStrings(
-      'TAUXXTAUXXTAUXXTAUXXTAUXX',
-      'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX'
+    'TAUXXTAUXXTAUXXTAUXXTAUXX',
+    'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX'
   )
 );
