@@ -4,39 +4,64 @@
  * @return {boolean}
  */
 const closeStrings = function (word1, word2) {
-  let map1 = new Map();
-  let map2 = new Map();
-  let set1 = new Set();
-  let set2 = new Set();
+  if (word1.length !== word2.length) return false;
+  let word1map = {};
+  let word2map = {};
 
-  for (let i of word1) {
-    map1.set(i, map1.get(i) + 1 || 1);
-    set1.add(i);
-  }
-  for (let i of word2) {
-    map2.set(i, map2.get(i) + 1 || 1);
-    set2.add(i);
-  }
-  console.log(map1, map2, set1, set2);
-
-  for (let i of map1.keys()) {
-    if (!map2.has(i)) return false;
+  for (let i = 0; i < word1.length; i++) {
+    word1map[word1[i]] = word1map[word1[i]] + 1 || 1;
+    word2map[word2[i]] = word2map[word2[i]] + 1 || 1;
   }
 
-  if (map1.size !== map2.size) {
-    return false;
+  for (let i = 0; i < word1.length; i++) {
+    if (!word2map[word1[i]]) return false;
   }
 
-  let arr1 = [...map1.values()].sort((a, b) => a - b);
-  let arr2 = [...map2.values()].sort((a, b) => a - b);
+  let arr1 = Object.values(word1map).sort((a, b) => a - b);
+  let arr2 = Object.values(word2map).sort((a, b) => a - b);
 
-  console.log(arr1, arr2);
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) return false;
-  }
-
-  return set1.size === set2.size;
+  return JSON.stringify(arr1) === JSON.stringify(arr2);
 };
 
-console.log(closeStrings('uau', 'ssx'));
+console.log(closeStrings('abc', 'bca'));
+// /**
+//  * @param {string} word1
+//  * @param {string} word2
+//  * @return {boolean}
+//  */
+// const closeStrings = function (word1, word2) {
+//   let freq1 = new Array(26).fill(0);
+//   let freq2 = new Array(26).fill(0);
+
+//   for (let ch of word1) {
+//     freq1[ch.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+//   }
+
+//   for (let ch of word2) {
+//     freq2[ch.charCodeAt(0) - 'a'.charCodeAt(0)]++;
+//   }
+
+//   console.log(freq1, freq2);
+
+//   for (let i = 0; i < 26; i++) {
+//     if (
+//       (freq1[i] === 0 && freq2[i] !== 0) ||
+//       (freq1[i] !== 0 && freq2[i] === 0)
+//     ) {
+//       return false;
+//     }
+//   }
+
+//   freq1.sort((a, b) => a - b);
+//   freq2.sort((a, b) => a - b);
+
+//   for (let i = 0; i < 26; i++) {
+//     if (freq1[i] !== freq2[i]) {
+//       return false;
+//     }
+//   }
+
+//   return true;
+// };
+
+// console.log(closeStrings('abc', 'bca'));
